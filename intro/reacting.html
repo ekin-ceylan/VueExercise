@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Growler</title>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div id="reacting">
+        <table>
+            <tr>
+                <th>Beer</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            <tr v-for="beer in beers">
+                <td>{{ beer.name }}</td>
+                <td>{{ beer.price | fixPrice}}</td>
+                <td><button v-on:click="buy(beer)">buy</button></td>
+            </tr>
+            <tr>
+                <td>Subtotal</td>
+                <td>{{ subTotal }}</td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div>
+            Online? {{ isOnline}}
+        </div>
+    </div>
+</body>
+
+
+
+</html>
+
+<script type="text/javascript" src="growler.js"></script>

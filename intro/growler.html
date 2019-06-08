@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Growler</title>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div id="growler2">
+        <label>Query Results</label>
+        <p v-cloak>
+            <div v-if="beers.length === 0">No beers were returned</div>
+            <div v-else-if="beers.length === 1">1 beer was returned</div>
+            <div v-else>{{beers.length}} beers were returned</div>
+        </p>
+
+        <div>
+            <label><strong>Max Alcohol by Volume (a.b.v.)</strong></label><br>
+            <input type="range" v-model="maxAbv" min="0" max="12" /><br>
+            <small>{{maxAbv}}%</small>
+
+            <ul>
+                    <li v-for="beer in beers" v-if="beer.abv < maxAbv">
+                        {{beer.name}} - {{beer.abv}}
+                    </li>
+                </ul>
+
+
+
+        </div>
+
+
+        <div v-show="beers.length === 0">
+            No beers were returned
+        </div>
+
+        <div v-show="beers.length > 0">
+            {{beers.length}} beers were returned
+        </div>
+
+        <ul>
+            <li v-for="page of pageCount" style="display: inline;margin-right: 10px;">
+                <a href="#" v-on:click="search(page);">{{ page }}</a>
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(v, k, i) in currentUser">
+                {{i}}: {{k}} - {{v}}
+            </li>
+        </ul>
+
+
+    </div>
+
+</body>
+
+
+
+</html>
+
+<script type="text/javascript" src="growler.js"></script>
