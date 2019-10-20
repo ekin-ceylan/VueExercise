@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" v-on:mousemove="getCoords" style="height: 100vh;">
+        <h1>{{ hello() }}</h1>
+        <p v-once>{{ description }}</p>
+
+        <p>
+            {{ desc() }}
+            <br>
+            <a v-bind:href="link" target="_blank">EC GitHub HtmlLink</a>
+        </p>
+        <p v-html="githubLink"></p>
+
+        <button v-on:click="showAlert">Alert Göster</button>
+        <button v-on:click="counter++">Artır</button>
+        <button v-on:click="counter += 2">2 Artır</button>
+        <p>{{ counter }}</p>
+        <p>{{ counter > 10 ? 'Counter 10\'dan büyüktür.' : 'Counter 10\'dan küçüktür.' }}</p>
+        <p>
+            Koordinatlar: {{ x }}, {{ y }}
+            <span v-on:mousemove.stop>GİZLİ BÖLME</span>
+        </p>
+        <div>
+            <label for="">Enter ile text göster</label>
+            <input type="text" v-on:keyup.enter.space="showText">
+        </div>
+        <div>
+            <p>
+                model iki yönlü bağlama sağlar.
+                <br>
+                v-bind:value ile bağlarsan tek yönlü olur.
+            </p>
+            <input type="text" v-bind:value="text">
+            <input type="text" v-model="text">
+            <p>{{ text }}</p>
+        </div>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

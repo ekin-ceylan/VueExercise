@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue JS Ödev 1</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>VueJS Muazzam bir Framework - {{ Name }} ({{ Age }})</p>
+        <p>{{ 5 * Age }}</p>
+        <!-- v-once yazılmazsa her method çağrısında yeni değer üretiyor.-->
+        <p v-once> 0 ile 1 arasında rastgele bir sayı: {{ rand() }} </p>
+        <img v-bind:src="Image" :alt="ImageTitle" :title="ImageTitle" srcset="" width="200">
+        <div>
+            <input type="text" v-bind:value="Name" v-on:input="nameChange">
+        </div>
+
+    </div>
+
+    <script src="odev.js"></script>
+</body>
+
+</html>

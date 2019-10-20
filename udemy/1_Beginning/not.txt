@@ -1,0 +1,14 @@
+* Vue diğer framework’lere göre birçok özelliği ile dikkat çekmeyi başardı. Maddeler halinde sıralayacak olursak Vue;
+    * Kolay anlaşılabilir
+    * Çok yönlü
+    * Sürdürülebilir
+    * Performanslı
+    * Test edilebilir
+
+* Progressive Framework???
+    * sizin bir backend uygulamanız var. Bu uygulamanızla çok küçük bir Vue.js uygulamasıyla kullanıcılarınız ile etkileşim yapan bir uygulama gerçekleştirebilirsiniz. Ya da yukarıda da bahsettiğim gibi Business Logic Katmanını Web Browser üzerine taşımak mı istiyorsunuz. Vue bunun için de size bir çözüm sunuyor. Kendi içerisinde bulunan Core özelliklerinin yanı sıra üçüncü parti sınıf ve kütüphaneler ile Vue Router ve Vuex ile beraber oldukça kolay SPA (Single Page Application) oluşturabilir ve sadece HTTP istekleriyle Backend uygulamanızı Frontend’ e taşıyabilirsiniz.
+
+* VueJs Core: State Management, Metot, Değişken Tanımları, Business
+* Vuex nedir?
+* Vue Router?
+* Reusable Component: Html, js, css'den oluşan küçük Vue uygulamacıkları

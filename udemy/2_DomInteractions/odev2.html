@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Ödev 2</title>
+</head>
+
+<body>
+    <div id="exercise2">
+        <button v-on:click="showAlert">Alert Göster</button>
+        <br>
+        <input type="text" v-on:keydown="value = $event.target.value">
+        <input type="text" v-on:keydown.enter="value = $event.target.value">
+        <p>{{ value }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#exercise2',
+            data: {
+                value: ''
+            },
+            methods: {
+                showAlert: function(){
+                    alert();
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

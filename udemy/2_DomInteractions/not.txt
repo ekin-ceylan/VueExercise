@@ -1,0 +1,81 @@
+* VueJs html üzerinde doğrudan bir işlem yapmıyor. Dolaylı yoldan işlem yapıyor.
+* Html ile bağlı değişkenleri kullanarak bir virtual dom yaratıyor.
+
+* Elde ettiği sonucu DOM'a aktarıyor.
+?????
+* Virtual DOM aslında biz sayfayı yenilediğimizde DOM’ un bir kopyasıdır. Daha sonra herhangi bir veri değiştiğinde framework değişmiş hali ile Virtual DOM’ u kıyaslar, eğer aynı değilse anlar ki bir değişiklik var ben DOM’ u güncelleyeyim der ve DOM üzerinde değişiklikleri gerçekleştirir. Böylece hem Virtual DOM güncellenmiş olur hem de DOM.
+* Vue.js özelinde anlatacak olursak eğer, Vue.js sürekli olarak DOM’ u kontrol etmez. Virtual DOM üzerinde bir kontrol sağlar. Değişiklik varsa onu DOM’ a yansıtır. Böylece performans oldukça yükselir.
+
+
+* String Interpolation (süslü parantezler) içinde yazdığımız herhangi bir ifade string olarak ele alınır. Buraya dizi veya js objesi gibi herhangi bir ilişkisel veri yazılmaz.
+* Aynı isimde bir değişken (data) ve bir method oluşturulamaz.
+* this anahtar kesimesi ile instance içerisindeki verilere erişilir.
+
+* String Interpolation attribute ile çalışmaz. Attribute Binding kullanılmalı.
+* Directive: VueJs tarafından işlem yapmamız için sağlanan tanımlamalar.
+* Çok sayıda built in directive bulunur.
+    * v-once: Sadece sayfa ayağa kalktığında ilk değeri bağlar, sonraki değişiklikleri yansıtmaz.
+    * v-html: Elemetin html koduna işler.
+
+* Event metoduna parametre göndereceksen ve eventi kullanmak istiyorsan, $event parametresini de metoda göndermek gerek.
+* Event Modifier ile parent elementteki evente veya eventin doğal davranışına müdahale edebilirsin.
+    * the click event's propagation will be stopped
+        <a v-on:click.stop="doThis"></a>
+
+    * the submit event will no longer reload the page
+        <form v-on:submit.prevent="onSubmit"></form>
+
+    * modifiers can be chained
+        <a v-on:click.stop.prevent="doThat"></a>
+
+    * just the modifier
+        <form v-on:submit.prevent></form>
+
+    * use capture mode when adding the event listener
+      i.e. an event targeting an inner element is handled here before being handled by that element -->
+        <div v-on:click.capture="doThis">...</div>
+
+    * only trigger handler if event.target is the element itself
+      i.e. not from a child element
+        <div v-on:click.self="doThat">...</div>
+    
+    * Order matters when using modifiers because the relevant code is generated in the same order. Therefore using v-on:click.prevent.self will prevent all clicks while v-on:click.self.prevent will only prevent clicks on the element itself.
+
+    * (2.1.4) the click event will be triggered at most once
+        <a v-on:click.once="doThis"></a>
+
+    * (2.3.0) the scroll event's default behavior (scrolling) will happen -->
+      immediately, instead of waiting for `onScroll` to complete 
+      in case it contains `event.preventDefault()`  
+      Don’t use .passive and .prevent together, because .prevent will be ignored and your browser will probably show you a warning. Remember, .passive communicates to the browser that you don’t want to prevent the event’s default behavior.             
+        <div v-on:scroll.passive="onScroll">...</div>
+
+* Key Modifiers ile klavye eventlerini dinleyebilirsin.
+    * $event.key neye eşitse onu kullanabilirsin
+        <input v-on:keyup.page-down="onPageDown">
+    * Vue sık kullanılan tuş kodları için birer mahlas sağlar.
+        * .enter
+        * .tab
+        * .delete (captures both “Delete” and “Backspace” keys)
+        * .esc
+        * .space
+        * .up
+        * .down
+        * .left
+        * .right
+    * define custom key modifier aliases via the global config.keyCodes object
+    * System Modifier keys 
+        * .ctrl
+        * .alt
+        * .shift
+        * .meta
+        * .exact: System Modifiers istenen sırayla mı tuşlandı
+    * Mouse Button Modifiers 
+        * .left
+        * .right
+        * .middle
+
+* Template içerisinde JS kodu yazmanın bir sınırı var. Bu sadece 1 satırlık bir kod olmak zorunda.
+
+* String Interpolation içine bir metot yazılırsa her render işleminde metot çalışır!!!
+* Bunun yerine computed kullanmak gerekir. Data gibi davranır ama metot gibi çalışır. Sadece ihtiyaç duyduğu değişkenler değişmişse çalışır.
