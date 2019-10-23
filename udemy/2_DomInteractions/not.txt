@@ -79,3 +79,8 @@
 
 * String Interpolation içine bir metot yazılırsa her render işleminde metot çalışır!!!
 * Bunun yerine computed kullanmak gerekir. Data gibi davranır ama metot gibi çalışır. Sadece ihtiyaç duyduğu değişkenler değişmişse çalışır.
+* Watch, belirtilen değişkenleri izler ve değişiklik anında çalışır.
+* Computed senkron, watch asenkron çalışır.
+* Watch value parametresini kullanır. Değişkenin yeni değeri
+* Reactivity Property
+* v-bind: yerine : ve v-on: yerine @ ifadeleri kullanılabilir.

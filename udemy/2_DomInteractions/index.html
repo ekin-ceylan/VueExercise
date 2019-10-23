@@ -13,6 +13,49 @@
 
 <body>
     <div id="app" v-on:mousemove="getCoords" style="height: 100vh;">
+        <ul>
+
+            <li>Key Modifiers ile klavye eventlerini dinleyebilirsin.</li>
+            <li>$event.key neye eşitse onu kullanabilirsin
+                <ul>
+                    <li>(input v-on:keyup.page-down="onPageDown")</li>
+                </ul>
+            </li>
+            <li>Vue sık kullanılan tuş kodları için birer mahlas sağlar.
+                <ul>
+                    <li>.enter</li>
+                    <li>.tab</li>
+                    <li>.delete (captures both “Delete” and “Backspace” keys)</li>
+                    <li>.esc</li>
+                    <li>.space</li>
+                    <li>.up</li>
+                    <li>.down</li>
+                    <li>.left</li>
+                    <li>.right</li>
+                </ul>
+            </li>
+            <li>define custom key modifier aliases via the global config.keyCodes object</li>
+            <li>System Modifier keys
+                <ul>
+                    <li>.ctrl</li>
+                    <li>.alt</li>
+                    <li>.shift</li>
+                    <li>.meta</li>
+                    <li>.exact: System Modifiers istenen sırayla mı tuşlandı</li>
+                </ul>
+            </li>
+            <li>Mouse Button Modifiers
+                <ul>
+                    <li>.left</li>
+                    <li>.right</li>
+                    <li>.middle</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <hr>
+        <br>
+
         <h1>{{ hello() }}</h1>
         <p v-once>{{ description }}</p>
 
@@ -49,7 +92,39 @@
 
     </div>
 
-    <script src="index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                description: 'Bu bir açıklamadır.',
+                link: 'https://github.com/ekin-ceylan/',
+                githubLink: '<a href="https://github.com/ekin-ceylan/"> EC GitHub <a>',
+                counter: 0,
+                x: 0,
+                y: 0,
+                text: 'deneme'
+            },
+            methods: {
+                hello: function () {
+                    return 'Merhaba Dünya';
+                },
+                desc: function () {
+                    this.description = 'Açıklama değişti.';
+                    return this.description;
+                },
+                showAlert: function () {
+                    alert(this.counter);
+                },
+                getCoords: function (event) {
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                },
+                showText: function (event) {
+                    alert(event.target.value);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

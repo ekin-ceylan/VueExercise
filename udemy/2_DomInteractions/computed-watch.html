@@ -13,13 +13,25 @@
 
 <body>
     <div id="app">
+        <ul>
+            <li>Template içerisinde JS kodu yazmanın bir sınırı var. Bu sadece 1 satırlık bir kod olmak zorunda.</li>
+            <li>String Interpolation içine bir metot yazılırsa her render işleminde metot çalışır!!!</li>
+            <li>Bunun yerine computed kullanmak gerekir. Data gibi davranır ama metot gibi çalışır. Sadece ihtiyaç duyduğu değişkenler değişmişse çalışır.</li>
+            <li>Watch, belirtilen değişkenleri izler ve değişiklik anında çalışır.</li>
+            <li>Computed senkron, watch asenkron çalışır.</li>
+            <li>Watch value parametresini kullanır. Değişkenin yeni değeri</li>
+            <li>Reactivity Property</li>
+            <li>v-bind: yerine : ve v-on: yerine @ ifadeleri kullanılabilir.</li>
+        </ul>
+        <hr>
+        <br>
         <button v-on:click="counter++">Artır</button>
         <button v-on:click="counter--">Azalt</button>
         <button v-on:click="secondCounter++">İkinci Artır</button>
 
         <p>Counter: {{ counter }} | {{ secondCounter }} </p>
         <p>{{ result() }} | {{ output }}</p>
-        
+
     </div>
 
     <script>
@@ -30,19 +42,24 @@
                 secondCounter: 0
             },
             methods: {
-                result: function(){
+                result: function () {
                     console.log('Metot Çalıştı');
                     return this.counter > 10 ? '10\'dan büyüktür' : '10\'dan küçüktür';
                 }
             },
             computed: {
-                output: function(){
+                output: function () {
                     console.log('Computed Çalıştı');
                     return this.counter > 10 ? '10\'dan büyüktür' : '10\'dan küçüktür';
                 }
             },
             watch: {
-                
+                counter: function (value) {
+                    let vm = this;
+                    setTimeout(() => {
+                        vm.counter = 0;
+                    }, 1500);
+                }
             }
         });
 

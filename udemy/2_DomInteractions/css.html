@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .green{
+            background-color: green;
+        }
+        .red{
+            background-color: red;
+        }
+        .border{
+            border: solid 2px yellow;
+        }
+    </style>
+
+    <title>Css</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li>Nesne, sınıf adı, dizi veya ifade yöntemiyle sınıf bağlamak</li>
+            <li>Dinamik olarka stil bağlamak</li>
+        </ul>
+        <div @click="attachClass =! attachClass" :class="{ yellow: attachClass }" class="box"></div>
+        <div :class="divClass" class="box"></div>
+        <div :class="color" class="box"></div>
+        <div :class="['border', {red: !attachClass}]" class="box"></div>
+        <div :style="{ backgroundColor: color}" class="box"></div>
+        <br>
+        <input type="text" v-model="color">
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data:{
+            attachClass: false,
+            color: 'green'
+        },
+        computed: {
+            divClass: function(){
+                return {
+                    yellow: this.attachClass,
+                    blue: !this.attachClass
+                }
+            }
+        }
+    });
+</script>
+
+</html>

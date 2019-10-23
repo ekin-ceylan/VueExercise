@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Ödev 3</title>
+</head>
+
+<body>
+    <div id="exercise3">
+        <div>
+            <p>Şu anki değer: {{ value }}</p>
+            <button @click="value += 5">5 Ekle</button>
+            <button @click="value += 1">1 Ekle</button>
+            <p>{{ result }}</p>
+        </div>
+        <br>
+        <div>
+            <p>Sıfırlanma süresi:</p>
+            <input type="number" v-model="time">
+            <p>{{ value }}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#exercise3',
+            data: {
+                value: 0,
+                result: 'Henüz bitmedi.',
+                time: 5
+            },
+            methods: {
+                showAlert: function () {
+                    alert();
+                }
+            },
+            computed: {},
+            watch: {
+                value: function (value) {
+                    this.result = value !== 33 ? 'Henüz bitmedi.' : 'Tamamlandı.';
+                },
+                result: function (value) {
+                    let that = this;
+                    setTimeout(() => {
+                        that.value = 0;
+                    }, 1000 * this.time);
+                },
+                time: function (value) {
+                    if (value < 0) {
+                        this.time = 0;
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
