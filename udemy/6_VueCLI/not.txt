@@ -1,0 +1,5 @@
+* Development Server kod optimizasyonu sağlar.
+* ES6'yı destekler. ES6 ile kod yazarız ve bu ortamlar ES5 koduna dönüştürür.
+* http'de olan bir çok özellik file protokolünde yoktur. Development Server http özelliklerinden yararlanmamızı sağlar.
+* Uygulamamızı gerçekçi şartlarda test etmemizi sağlar.
+* Dosyaların gerektiğinde yüklenmesi için ayarlar girilebilir.

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>Birden fazla Vue Instance tanımlamak mümkündür.</li>
+        <li>Vue numunelerine dışarıdan erişmek mümkündür. Bunun için nesneler bir değişkene atanır.</li>
+        <li>Alanlara dışarıdan erişmek $data gibi belirteçler kullanılır.</li>
+        <li>Vue objesine kurulum sonrasında eklenen alanlar Vue tarafından kullanılamaz.</li>
+        <li>$refs ile html elementlerine erişilebilir. Element üzrine ref attr eklemek gerekir.</li>
+        <li>Bu yöntemle yapılan değişiklikler v-DOM ile çakışıyorsa Vue bu işlemi ezer.</li>
+        <li>Başlangıçta el alanının göndermeyip. Daha sonra vm1.$mount('#app') koduyla template oluşturabiliriz. ayağa
+            kaldırabiliriz.</li>
+        <li>Html şablonu henüz hazır değilse bu yöntem kullanılabilir.</li>
+        <li>template, kontrol edilen bloğun içindeki html yapısını ifade eder.</li>
+        <li>Bağlama işleminin üçüncü yolu. Mount edildikten sonra js ile append etmek.</li>
+        <li>el yöntemiyle bağlama yönteminde birden fazla html bloğuna erişilemez. Tespit edilen ilk blokla ilişki kurulur.</li>
+        <li>Vue API içerisine component olarak eklenen Instance tekrar tekrar kullanılabilir.</li>
+        <li>iki türlü derleyici vardır. Birisi browser üzerinden çalışır. Diğeri Vue CLI ile gelir. Vue Development Server</li>
+        <li>V-Dom ile template arasında fark varsa v-Dom güncellenir ve DOM render edilir.</li>
+    </ul>
+    <div id="app">
+        <button ref="my-button">Buton</button>
+        <hello></hello>   
+        <hello></hello>   
+    </div>
+    <div id="app2"></div>
+
+    <div id="app3"></div>
+
+    <div class="hello"></div>
+
+    
+</body>
+
+</html>
+
+<script>
+
+    Vue.component('hello', {
+        template: '<h1>Hello Component</h1>'
+    });
+    
+    let vm1 = new Vue({
+        el: '#app',
+        data: {
+
+        }
+    });
+
+    console.log(vm1.$refs['my-button'].innerText);
+
+    let vm2 = new Vue({
+        template: '<h1>Merhaba Dünya</h1>'
+    });
+
+    vm2.$mount('#app2');
+
+    let vm3 = new Vue({
+        template: '<h1>Merhaba Dünya</h1>'
+    });
+
+    vm3.$mount();
+
+    document.getElementById('app3').appendChild(vm3.$el);
+
+    new Vue({
+        el: '.hello',
+        template: '<h1>Hello World</h1>'
+    });
+
+    
+</script>
