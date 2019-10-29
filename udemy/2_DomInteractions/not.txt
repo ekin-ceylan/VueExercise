@@ -84,3 +84,6 @@
 * Watch value parametresini kullanır. Değişkenin yeni değeri
 * Reactivity Property
 * v-bind: yerine : ve v-on: yerine @ ifadeleri kullanılabilir.
+
+* template elementi VueJs tarafıdan render edilmez.
+* :key="person" yazarsak sıra numarasını değil nesnenin kendisini saklar.

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Listeler</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="product in products">{{ product }}</li>
+        </ul>
+        <ul>
+            <li v-for="(person, index) in persons" :key="person">{{ index }} - {{ person.name }}</li>
+        </ul>
+        <ul>
+            <li v-for="(person, index) in persons">{{ index }}
+                <ul>
+
+                    <li v-for="(value, key, index) in person">{{ index }} - {{ key }}: {{ value }}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <span v-for="i in 5"> {{ i }} </span>
+
+        <template v-for="(person, index) in persons">
+            <h3>{{ index }}</h3>
+            <span>{{ person.name }}</span>
+        </template>
+    </div>
+</body>
+
+</html>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            products: ["Monitör", "Klavye", "Askı", "Masa"],
+            persons: [
+                { name: "Ekin", email: "ekin@net.com" },
+                { name: "Felakettin", email: "felo@net.com" },
+                { name: "Gökhan", email: "abc@net.com" },
+                { name: "İflasettin", email: "ifo@net.com" }
+            ]
+        }
+    });
+</script>
