@@ -3,3 +3,16 @@
 * http'de olan bir çok özellik file protokolünde yoktur. Development Server http özelliklerinden yararlanmamızı sağlar.
 * Uygulamamızı gerçekçi şartlarda test etmemizi sağlar.
 * Dosyaların gerektiğinde yüklenmesi için ayarlar girilebilir.
+* Tüm Js dosyalarını minify eder.
+* CLI: Command Line Interface
+* sudo npm install -g vue-cli
+
+* tüm vue.js kodlrımız src içerisinde bulunur.
+* babelrc ES6'yı ES5'e çeviren aracın ayarları
+* bütün kodlar index.html içindeki #app elementine mount edilecek.
+* derlenen bütün js kodları dist altında build.js içine yazılacak.
+* package json ve webpack config için araştırma yap
+* instance #app elementine bağlanacak ve app vue dosyası index.html içine render edilecek.
+* export default araştır.
+* npm run dev localhostta açar.
+* npm run build derler
