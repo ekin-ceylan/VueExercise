@@ -1,132 +1,137 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Growler</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
 
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
     <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <style>
-        .colorGreen {
-            color: green;
-        }
+      .colorGreen {
+        color: green;
+      }
 
-        .fontWeight {
-            font-weight: bold;
-            text-decoration: underline;
-        }
+      .fontWeight {
+        font-weight: bold;
+        text-decoration: underline;
+      }
 
-        .colorRed {
-            color: red !important;
-        }
+      .colorRed {
+        color: red !important;
+      }
+
+      .scrolling-div {
+        height: 100px;
+        overflow: auto;
+        border: solid 1px;
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div id="growler" v-on:keydown.f1="openInfo">
-        <fieldset>
-            <legend>textbox</legend>
-            <form v-on:submit.prevent>
-                <input v-on:keyup="evaluateKey" v-on:keyup.enter.prevent="executeSearch" v-model.lazy.trim="query"
-                    placeholder="Search...">
-            </form>
-            <button type="submit" v-on:click.prevent="submitSearch">Submit</button>
-            <p>{{query}}</p>
+      <fieldset>
+        <legend>textbox</legend>
+        <form v-on:submit.prevent>
+          <input v-on:keyup="evaluateKey" v-on:keyup.enter.prevent="executeSearch" v-model.lazy.trim="query" placeholder="Search..." />
+        </form>
+        <button type="submit" v-on:click.prevent="submitSearch">Submit</button>
+        <p>{{query}}</p>
 
-            <textarea v-model="emailMessage"></textarea>
-            <p>{{emailMessage}}</p>
-        </fieldset>
+        <textarea v-model="emailMessage"></textarea>
+        <p>{{emailMessage}}</p>
+      </fieldset>
 
-        <fieldset v-on:click.capture="buttonGrandparentClick">
-            <legend>button</legend>
-            <div v-on:click.capture.self.stop="buttonParentClick">
-                <button v-on:click.once="executeSearch">
-                    Search
-                </button>
-            </div>
-        </fieldset>
+      <fieldset v-on:click.capture="buttonGrandparentClick">
+        <legend>button</legend>
+        <div v-on:click.capture.self.stop="buttonParentClick">
+          <button v-on:click.once="executeSearch">
+            Search
+          </button>
+        </div>
+      </fieldset>
 
-        <fieldset v-on:contextmenu.prevent="onBlockClick" >
-            <legend>Radiobutton</legend>
-            <label>
-                <input type="radio" v-model="searchIndex" value="breweries">Breweries
-            </label>
-            <label>
-                <input type="radio" v-model="searchIndex" value="beers">
-                Beers
-            </label><br>
-            <small>{{searchIndex}}</small>
-        </fieldset>
+      <fieldset v-on:contextmenu.prevent="onBlockClick">
+        <legend>Radiobutton</legend>
+        <label> <input type="radio" v-model="searchIndex" value="breweries" />Breweries </label>
+        <label>
+          <input type="radio" v-model="searchIndex" value="beers" />
+          Beers </label
+        ><br />
+        <small>{{searchIndex}}</small>
+      </fieldset>
 
-        <fieldset>
-            <legend>Checkbox</legend>
-            <label>
-                <input type="checkbox" v-model="isPowerSyntaxEnabled">Power Syntax Enabled
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" v-model="searchIndexes" value="beers">
-                Beers
-            </label>
-            <label>
-                <input type="checkbox" v-model="searchIndexes" value="breweries">
-                Breweries
-            </label><br>
-            <small>{{searchIndexes}}</small>
-        </fieldset>
+      <fieldset>
+        <legend>Checkbox</legend>
+        <label> <input type="checkbox" v-model="isPowerSyntaxEnabled" />Power Syntax Enabled </label>
+        <br />
+        <label>
+          <input type="checkbox" v-model="searchIndexes" value="beers" />
+          Beers
+        </label>
+        <label>
+          <input type="checkbox" v-model="searchIndexes" value="breweries" />
+          Breweries </label
+        ><br />
+        <small>{{searchIndexes}}</small>
+      </fieldset>
 
-        <fieldset>
-            <legend>Selectlist</legend>
-            <select v-model="selectedSearchIndex">
-                <option value="">Seçiniz</option>
-                <option value="beers">Beers</option>
-                <option value="breweries">Breweries</option>
-                <option value="distilleries">Distilleries</option>
-                <option value="pubs">Pubs</option>
-            </select>
-            <label>
-                selected: {{selectedSearchIndex}}
-            </label>
-            <br>
-            <select v-model="selectedSearchIndexes" multiple>
-                <option value="beers">Beers</option>
-                <option value="breweries">Breweries</option>
-                <option value="distilleries">Distilleries</option>
-                <option value="pubs">Pubs</option>
-            </select>
-            <label>
-                selected: {{selectedSearchIndexes}}
-            </label>
-        </fieldset>
+      <fieldset>
+        <legend>Selectlist</legend>
+        <select v-model="selectedSearchIndex">
+          <option value="">Seçiniz</option>
+          <option value="beers">Beers</option>
+          <option value="breweries">Breweries</option>
+          <option value="distilleries">Distilleries</option>
+          <option value="pubs">Pubs</option>
+        </select>
+        <label>
+          selected: {{selectedSearchIndex}}
+        </label>
+        <br />
+        <select v-model="selectedSearchIndexes" multiple>
+          <option value="beers">Beers</option>
+          <option value="breweries">Breweries</option>
+          <option value="distilleries">Distilleries</option>
+          <option value="pubs">Pubs</option>
+        </select>
+        <label>
+          selected: {{selectedSearchIndexes}}
+        </label>
+      </fieldset>
 
-        <h2 v-once v-text="appName" v-bind:style="{backgroundColor: color, color: 'yellow'}"></h2>
-        <h2 v-html="htmlContent"
-            :style="[link, header, {cursor:isOnline ? 'crosshair' : 'arrow'}, {backgroundColor: 'green'}, {'margin-bottom: 20px':isOnline}]">
-        </h2>
-        <h2 :class="[styleClass, {'colorRed': !isOnline}]">
-            {{appName}}
-        </h2>
-        <img v-bind:alt="appName" :src="appLogo" :style="appStyle" />
-
-
-        <ul id="myContextMenu" v-if="contextMenu.displayed"  v-on:blur="closeContextMenu" :style="contextMenu.style" style="position: absolute">
-            <li><a href="#" v-on:click="onCopyClick">Copy</a> </li>
-            <li><a href="#" v-on:click="onPasteClick">Paste</a> </li>
+      <div class="scrolling-div" v-on:scroll.passive="onScroll">
+        <ul>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
+          <li>test</li>
         </ul>
+      </div>
 
+      <h2 v-once v-text="appName" v-bind:style="{backgroundColor: color, color: 'yellow'}"></h2>
+      <h2 v-html="htmlContent" :style="[link, header, {cursor:isOnline ? 'crosshair' : 'arrow'}, {backgroundColor: 'green'}, {'margin-bottom: 20px':isOnline}]"></h2>
+      <h2 :class="[styleClass, {'colorRed': !isOnline}]">
+        {{appName}}
+      </h2>
+      <img v-bind:alt="appName" :src="appLogo" :style="appStyle" />
+
+      <ul id="myContextMenu" v-if="contextMenu.displayed" v-on:blur="closeContextMenu" :style="contextMenu.style" style="position: absolute">
+        <li><a href="#" v-on:click="onCopyClick">Copy</a></li>
+        <li><a href="#" v-on:click="onPasteClick">Paste</a></li>
+      </ul>
     </div>
-
-
-
-
-
-</body>
-
-
-
+  </body>
 </html>
 
 <script type="text/javascript" src="growler.js"></script>

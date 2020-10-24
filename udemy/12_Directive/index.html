@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      #test {
+        display: flex;
+        border: solid 1px;
+        height: 300px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 1000px;
+      }
+
+      .inside {
+        background-color: red;
+        border: solid 1px green;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <p v-text="'Burası bir paragraftır.'"></p>
+      <p v-html="'<button type=\'reset\'>Reset Butonu</button>'"></p>
+      <button @click="test = 6">Test</button>
+      <br />
+      <span v-pre="test===5">{{ this will not be compiled }}</span>
+
+      <div id="test">
+        <div class="inside">
+          <p>burası bir paragraf</p>
+        </div>
+        <div class="inside">
+          <span>small</span>
+        </div>
+        <div class="inside">
+          <span>long long long</span>
+        </div>
+        <div class="inside">
+          <h1>test</h1>
+        </div>
+        <div class="inside"><div>hello world</div></div>
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          test: 5
+        },
+        methods: {}
+      });
+    </script>
+  </body>
+</html>
